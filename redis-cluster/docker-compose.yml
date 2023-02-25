@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  redis-cluster:
+    image: redis
+    volumes:
+      - ./create-nodes.sh:/home/create-nodes.sh
+      - ./conf:/conf
+      - ./data:/data
+    command: /home/create-nodes.sh
+    ports:
+      - 6379:7001
+      - 7001-7006:7001-7006
+      - 16379:16379
+    networks:
+      redis_cluster_subnet:
+        ipv4_address: 172.70.0.101
+networks:
+  redis_cluster_subnet:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.70.0.0/24"
