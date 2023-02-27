@@ -17,6 +17,7 @@ You could alternatively clean up the data folder, which is mounted to the host, 
 
 ```
 redis-cli --cacert ./conf/redis.crt -c -u rediss://secret@localhost:7001 cluster nodes
+redis-cli --cacert ./conf/redis.crt -c --tls -h localhost -p 7001 -a secret cluster nodes
 ```
 
 ## To stop and clean up
